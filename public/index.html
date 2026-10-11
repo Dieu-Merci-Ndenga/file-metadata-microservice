@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Lens | Metadata inspector</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="File Lens home"><span class="brand-mark">FL</span> file lens</a>
+        <span class="status"><span class="status-dot"></span> local utility</span>
+      </header>
+
+      <section class="hero">
+        <p class="eyebrow">FILE METADATA / 001</p>
+        <h1>See what’s<br /><em>inside.</em></h1>
+        <p class="intro">Drop a file into the lens. We’ll return its name, MIME type, and exact size without storing the file.</p>
+      </section>
+
+      <section class="workspace" aria-label="File metadata uploader">
+        <form id="upload-form" action="/api/fileanalyse" method="post" enctype="multipart/form-data" class="upload-panel">
+          <label class="drop-zone" for="upfile">
+            <span class="drop-icon" aria-hidden="true">↑</span>
+            <span class="drop-title">Choose a file</span>
+            <span class="drop-hint" id="file-label">Any format · up to 10 MB</span>
+            <input id="upfile" name="upfile" type="file" required />
+          </label>
+          <button type="submit">Inspect file <span aria-hidden="true">→</span></button>
+        </form>
+
+        <aside class="result-panel" aria-live="polite">
+          <div class="panel-heading"><span>OUTPUT</span><span id="result-state">WAITING</span></div>
+          <div id="result" class="result-empty">Your file’s metadata<br />will appear here.</div>
+        </aside>
+      </section>
+
+      <footer><span>POST /api/fileanalyse</span><span>NO FILES RETAINED</span></footer>
+    </main>
+    <script src="/script.js"></script>
+  </body>
+</html>
