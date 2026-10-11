@@ -1,9 +1,14 @@
 const path = require('path');
 const express = require('express');
 const multer = require('multer');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// INDISPENSABLE pour que freeCodeCamp puisse interroger ton API
+app.use(cors({ optionsSuccessStatus: 200 }));
+
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 10 * 1024 * 1024 }
